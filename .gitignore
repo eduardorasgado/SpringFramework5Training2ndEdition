@@ -1,3 +1,5 @@
+ServletsWorkspace/Servers/*
+.metadata
 # Compiled class file
 *.class
 
