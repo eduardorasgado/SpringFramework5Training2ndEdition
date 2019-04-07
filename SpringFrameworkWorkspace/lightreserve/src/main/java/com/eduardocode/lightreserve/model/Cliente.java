@@ -28,7 +28,7 @@ import lombok.Data;
 @Table(name="cliente")
 // queries nombradas: se hacen directamente en el pojo
 // usando jpql -> lenguaje de postgres
-@NamedQuery(name="ClientefindByIdentificacionCli", 
+@NamedQuery(name="Cliente.findByIdentificacion", 
 			query="Select c from Cliente c.identificacionCli = ?1")
 public class Cliente {
 	@Id

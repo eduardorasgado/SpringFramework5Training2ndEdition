@@ -12,7 +12,7 @@ import com.eduardocode.lightreserve.model.Reserva;
 public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	
 	/**
-	 * Consulta de tipo jpql
+	 * 3) Metodo basado en consultas de tipo jpql multi campos
 	 * @param fechaInicio
 	 * @param fechaSalida
 	 * @return
