@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +26,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="cliente")
+// queries nombradas: se hacen directamente en el pojo
+// usando jpql -> lenguaje de postgres
+@NamedQuery(name="ClientefindByIdentificacionCli", 
+			query="Select c from Cliente c.identificacionCli = ?1")
 public class Cliente {
 	@Id
 	@GeneratedValue(generator="system-uuid")
@@ -34,7 +39,7 @@ public class Cliente {
 	private String idCli;
 	private String nombreCli;
 	private String apellidosCli;
-	private String identificationCli;
+	private String identificacionCli;
 	private String direccionCli;
 	private String telefonoCli;
 	private String emailCli;
