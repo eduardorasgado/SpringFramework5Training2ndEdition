@@ -30,7 +30,7 @@ import lombok.Data;
 // queries nombradas: se hacen directamente en el pojo
 // usando jpql -> lenguaje de postgres
 @NamedQuery(name = "Cliente.findByIdentificacion", 
-			query = "Select c from Cliente c.identificacionCli = ?1")
+			query = "Select c from Cliente c where c.identificacionCli = ?1")
 public class Cliente {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
@@ -39,7 +39,7 @@ public class Cliente {
 	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String idCli;
 	private String nombreCli;
-	private String apellidosCli;
+	private String apellidoCli;
 	private String identificacionCli;
 	private String direccionCli;
 	private String telefonoCli;
