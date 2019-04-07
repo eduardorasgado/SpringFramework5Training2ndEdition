@@ -1,5 +1,6 @@
 ServletsWorkspace/Servers/*
 SpringFrameworkWorkspace/Servers/*
+SpringFrameworkWorkspace/lightreserve/src/main/resources/application.yaml
 .metadata
 # Compiled class file
 *.class
