@@ -29,7 +29,8 @@ public class Cliente {
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	// notacion propia de hibernate
-	@GenericGenerator(name="system-uuid", strategy="uuid2") // generar una cadena para id
+	// generar una cadena para id
+	@GenericGenerator(name="system-uuid", strategy="uuid2") 
 	private String idCli;
 	private String nombreCli;
 	private String apellidosCli;
@@ -38,7 +39,8 @@ public class Cliente {
 	private String telefonoCli;
 	private String emailCli;
 	
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente") // en el modelo de reserva hay un atributo 
+									//llamado cliente
 	private Set<Reserva> reservas;
 	
 	public Cliente() {

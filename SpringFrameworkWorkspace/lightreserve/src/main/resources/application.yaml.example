@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    # cadena de conexion
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: secret
+    # del group id de la dependencia de postgres del pom del project
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      # creacion automatica de las tablas basadas en los pojos de la capa model
+      ddl-auto: create-drop
+      # cada que se hace una operacion mostrar el sql del metodo
+      # solo recomendado para desarrollo, no produccion(porque acumula en el log)
+    generate-ddl: true
+    show-sql: true

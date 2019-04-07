@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -31,4 +33,10 @@ public class Reserva {
 	private String idRes;
 	private Date fechaIngresoRes;
 	private Date fechaSalidaRes;
+	private int cantidadPersonasRes;
+	private String descripcionRes;
+	
+	@ManyToOne
+	@JoinColumn(name="idCli") // en tabla reserva habla una columna llamada idCli
+	private Cliente cliente;
 }
