@@ -20,6 +20,7 @@ import lombok.Data;
 
 /**
  * Clase que representa la tabla reserva
+ * 
  * @author cheetos
  *
  */
@@ -27,24 +28,24 @@ import lombok.Data;
 // anotacion para la generacion automatica de getters y setters
 @Data
 @Entity
-@Table(name="reserva")
+@Table(name = "reserva")
 public class Reserva {
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="systenm-uuid", strategy="uuid2")
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "systenm-uuid", strategy = "uuid2")
 	private String idRes;
-	
+
 	// anotacion temporal de javax persistence
 	// de especificacion exacta de tipo de fecha para la db
 	@Temporal(TemporalType.DATE)
 	private Date fechaIngresoRes;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date fechaSalidaRes;
 	private int cantidadPersonasRes;
 	private String descripcionRes;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idCli") // en tabla reserva habla una columna llamada idCli
+	@JoinColumn(name = "idCli") // en tabla reserva habla una columna llamada idCli
 	private Cliente cliente;
 }

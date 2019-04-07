@@ -18,6 +18,7 @@ import lombok.Data;
 
 /**
  * Clase que esta representando la tabla cliente de la db
+ * 
  * @author cheetos
  *
  */
@@ -25,17 +26,17 @@ import lombok.Data;
 // anotacion propia de lombok para creacion automatica de getters and setters
 @Data
 @Entity
-@Table(name="cliente")
+@Table(name = "cliente")
 // queries nombradas: se hacen directamente en el pojo
 // usando jpql -> lenguaje de postgres
-@NamedQuery(name="Cliente.findByIdentificacion", 
-			query="Select c from Cliente c.identificacionCli = ?1")
+@NamedQuery(name = "Cliente.findByIdentificacion", 
+			query = "Select c from Cliente c.identificacionCli = ?1")
 public class Cliente {
 	@Id
-	@GeneratedValue(generator="system-uuid")
+	@GeneratedValue(generator = "system-uuid")
 	// notacion propia de hibernate
 	// generar una cadena para id
-	@GenericGenerator(name="system-uuid", strategy="uuid2") 
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String idCli;
 	private String nombreCli;
 	private String apellidosCli;
@@ -43,11 +44,11 @@ public class Cliente {
 	private String direccionCli;
 	private String telefonoCli;
 	private String emailCli;
-	
-	@OneToMany(mappedBy="cliente") // en el modelo de reserva hay un atributo 
-									//llamado cliente
+
+	@OneToMany(mappedBy = "cliente") // en el modelo de reserva hay un atributo
+										// llamado cliente
 	private Set<Reserva> reservas;
-	
+
 	public Cliente() {
 		//
 	}
