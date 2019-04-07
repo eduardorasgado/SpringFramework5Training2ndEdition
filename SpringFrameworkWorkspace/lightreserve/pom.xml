@@ -29,6 +29,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <!-- provided significa que no va a empaquetarse sino va a ser usada previo al proceso de construccion -->
+		    <scope>provided</scope>
+		</dependency>
+				
 	</dependencies>
 
 	<build>
