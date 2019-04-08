@@ -48,8 +48,4 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente") // en el modelo de reserva hay un atributo
 										// llamado cliente
 	private Set<Reserva> reservas;
-
-	public Cliente() {
-		//
-	}
 }
