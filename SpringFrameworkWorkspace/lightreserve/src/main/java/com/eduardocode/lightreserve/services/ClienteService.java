@@ -90,4 +90,12 @@ public class ClienteService {
 	public List<Cliente> findByApellido(String apellidoCli) {
 		return this.clienteRepository.findByApellidoCli(apellidoCli);
 	}
+	
+	/**
+	 * Devuelve todos los clientes que se encuentren registrados en la db
+	 * @return
+	 */
+	public List<Cliente> findAll() {
+		return clienteRepository.findAll();
+	}
 }

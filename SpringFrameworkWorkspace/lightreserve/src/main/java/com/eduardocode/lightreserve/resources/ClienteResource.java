@@ -3,8 +3,12 @@
  */
 package com.eduardocode.lightreserve.resources;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -79,6 +83,29 @@ public class ClienteResource {
 		
 		return new ResponseEntity<>(this.clienteService.update(cliente),
 				HttpStatus.OK);
+	}
+	
+	/**
+	 * Metodo que recibe una identificacion, busca a un cliente con dicha 
+	 * identificacion y elimina al cliente que se ha encontrado
+	 * @param identificacion
+	 */
+	@DeleteMapping("/{identificacion}")
+	public void removeCliente(@PathVariable("identificacion") String identificacion) {
+		
+		Cliente cliente = clienteService.findByIdentificacion(identificacion);
+		if(cliente != null) {
+			clienteService.delete(cliente);
+		}
+	}
+	
+	/**
+	 * Responde con una lista de todos los clientes del negocio
+	 * @return
+	 */
+	@GetMapping
+	public ResponseEntity<List<Cliente>> findAll() {
+		return ResponseEntity.ok(this.clienteService.findAll());
 	}
 	
 	/**
