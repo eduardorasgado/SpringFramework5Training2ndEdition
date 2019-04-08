@@ -20,6 +20,11 @@ import com.eduardocode.lightreserve.model.Cliente;
 import com.eduardocode.lightreserve.resources.vo.ClienteVO;
 import com.eduardocode.lightreserve.services.ClienteService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Resources package -> capa de vista de la aplicacion
  * 
@@ -29,6 +34,13 @@ import com.eduardocode.lightreserve.services.ClienteService;
  */
 @RestController
 @RequestMapping("/api/cliente")
+/*
+ * anotacion propia de swagger para soportar documentacion de esta clase
+ * una vez cada metodo del crud este documentado podemos acceder a la api ui
+ * de swagger mediante un browser en la direccion:
+ * http://localhost:8080/swagger-ui.html
+ * */
+@Api(tags="cliente") 
 public class ClienteResource {
 	private final ClienteService clienteService;
 	
@@ -48,6 +60,13 @@ public class ClienteResource {
 	 * @return
 	 */
 	@PostMapping
+	//------------DOCUMENTACION UI-----------------------
+	@ApiOperation(value="Crear cliente", notes="Servicio para crear un nuevo cliente")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Cliente creado correctamente"),
+			@ApiResponse(code=400, message="Solicitud invalida")
+	})
+	//------------------------------------------------
 	public ResponseEntity<Cliente> createCliente(@RequestBody ClienteVO clienteVo) {
 		// tomamos el cliente deseado y le mapeamos el cliente basado en un VO
 		Cliente cliente = new Cliente();
@@ -66,6 +85,14 @@ public class ClienteResource {
 	 * @return
 	 */
 	@PutMapping("/{identificacion}")
+	//------------DOCUMENTACION UI-----------------------
+	@ApiOperation(value="Actualizar cliente", notes="Servicio para actualizar un "
+			+ "nuevo cliente")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Cliente actualizado correctamente"),
+			@ApiResponse(code=404, message="Cliente no encontrado")
+	})
+	//------------------------------------------------
 	public ResponseEntity<Cliente> updateCliente(
 			@PathVariable("identificacion") String identificacion,
 			// aqui se va a mapear lo que venga del frontend, en clase pura,
@@ -91,6 +118,12 @@ public class ClienteResource {
 	 * @param identificacion
 	 */
 	@DeleteMapping("/{identificacion}")
+	//------------DOCUMENTACION UI-----------------------
+	@ApiOperation(value="Eliminar cliente", notes="Servicio para eliminar un cliente")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message="Cliente no encontrado")
+	})
+	//------------------------------------------------
 	public void removeCliente(@PathVariable("identificacion") String identificacion) {
 		
 		Cliente cliente = clienteService.findByIdentificacion(identificacion);
@@ -104,6 +137,13 @@ public class ClienteResource {
 	 * @return
 	 */
 	@GetMapping
+	//------------DOCUMENTACION UI-----------------------
+	@ApiOperation(value="Listar Clientes", notes="Servicio para listar todos los clientes")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Clientes encontrados"),
+			@ApiResponse(code=404, message="Clientes no encontrados")
+	})
+	//------------------------------------------------
 	public ResponseEntity<List<Cliente>> findAll() {
 		return ResponseEntity.ok(this.clienteService.findAll());
 	}
