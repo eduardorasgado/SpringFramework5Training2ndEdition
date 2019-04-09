@@ -1,8 +1,11 @@
 package com.eduardocode.lightreserve.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eduardocode.lightreserve.model.Cliente;
 import com.eduardocode.lightreserve.model.Reserva;
 import com.eduardocode.lightreserve.repository.ReservaRepository;
 
@@ -49,5 +52,24 @@ public class ReservaService {
 	 */
 	public void delete(Reserva reserva) {
 		this.reservaRepository.delete(reserva);
+	}
+	
+	/**
+	 * Metodo para obtener todas las entidades de tipo reserva sin ningun
+	 * filtro de busqueda en especifico
+	 * @return
+	 */
+	public List<Reserva> findAll() {
+		return this.reservaRepository.findAll();
+	}
+	
+	/**
+	 * Metodo para obtener una lista de reservas pertenecientes a un cliente
+	 * en particular proporcionado por la peticion del frontend
+	 * @param cliente
+	 * @return
+	 */
+	public List<Reserva> findByCliente(Cliente cliente){ 
+		return this.reservaRepository.findByCliente(cliente);
 	}
 }
