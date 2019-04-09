@@ -1,10 +1,12 @@
 package com.eduardocode.lightreserve.resources;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +54,7 @@ public class ReservaResource {
 	public ResponseEntity<Reserva> createReserva(@RequestBody ReservaVO reservaVo) {
 		Reserva reserva = new Reserva();
 		reserva = this.mappingReserva(reserva, reservaVo);
+		reserva = this.mappingClienteToReserva(reserva, reservaVo);
 		
 		Reserva reservaSaved = this.reservaService.create(reserva);
 		// guardamos la reserva que se guardó en el cliente al que le pertenece
@@ -62,13 +65,63 @@ public class ReservaResource {
 		return rEntity;
 	}
 	
+	/**
+	 * Actualiza una reserva dada en la base de datos, sin cambiar el cliente
+	 * al que le pertenece
+	 * 
+	 * @param idReserva
+	 * @param reservaVo
+	 * @return
+	 */
 	@PutMapping("/{idReserva}")
 	public ResponseEntity<Reserva> updateReserva(
 			@PathVariable("idReserva") String idReserva,
-			ReservaVO ReservaVo) {
-		//Reserva reserva = 
+			ReservaVO reservaVo) {
+		Reserva reserva = this.reservaService.findById(idReserva);
+		if(reserva == null) {
+			return new ResponseEntity<Reserva>(HttpStatus.NOT_FOUND);
+		} else {
+			// el cliente de la reserva no cambiara sobre ningun caso
+			// por ello solo modificamos los atributos basicos
+			reserva = this.mappingReserva(reserva, reservaVo);
+		}
+		
 		//return ResponseEntity<>(this.clienteService)
-		return null;
+		return new ResponseEntity<Reserva>(this.reservaService.update(reserva),
+				HttpStatus.OK);
+	}
+	
+	/**
+	 * Eliminar una reserva determinada, necesita el id del cliente para saber
+	 * que el dueno de la reserva es quien la elimina
+	 * @param idReserva
+	 */
+	@DeleteMapping("/{idCliente}/{idReserva}")
+	public ResponseEntity<Reserva> removeReserva(@PathVariable("idReserva") String idReserva,
+			@PathVariable("idCliente") String idCliente) {
+		Reserva reserva = this.reservaService.findById(idReserva);
+		
+		// solamente un cliente puede eliminar sus propias reservas
+		if(idCliente.equals(reserva.getCliente().getIdCli())) {
+			this.reservaService.delete(reserva);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		// TODO: Comprobar si al eliminar una reserva se elimina de su cliente: SI
+	}
+	
+	/**
+	 * Devuelve una lista de todas las reservas con las que un cliente cuenta
+	 * @param idCliente
+	 * @return
+	 */
+	@GetMapping("/{idCliente}")
+	public ResponseEntity<List<Reserva>> findAllByCliente(
+			@PathVariable("idCliente") String idCliente) {
+		Cliente cliente = clienteService.findById(idCliente);
+		
+		return ResponseEntity.ok(this.reservaService.findByCliente(cliente));
 	}
 	
 	/**
@@ -92,7 +145,6 @@ public class ReservaResource {
 		reserva.setCantidadPersonasRes(reservaVo.getCantidadPersonasRes());
 		reserva.setDescripcionRes(reservaVo.getDescripcionRes());
 		
-		reserva = this.mappingClienteToReserva(reserva, reservaVo);
 		return reserva;
 	}
 	

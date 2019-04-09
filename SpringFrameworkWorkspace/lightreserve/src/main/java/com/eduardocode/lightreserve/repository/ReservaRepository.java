@@ -30,6 +30,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	 * @return
 	 */
 	public Optional<Reserva> findByIdRes(String idRes);
+	
 	/**
 	 * Devuelve una lista de reservas dada un cliente
 	 * @param cliente
