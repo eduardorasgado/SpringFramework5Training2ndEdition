@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +40,14 @@ public class ReservaResource {
 		this.clienteService = clienteService;
 	}
 	
+	/**
+	 * Metodo que llama al servicio de reserva, para Crear una nueva Reserva  
+	 * crea una clase virtual de reserva con los datos que vienen del frontend,
+	 * y los mapea a una clase de Reserva de modelo,
+	 *  
+	 * @param reservaVo
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<Reserva> createReserva(@RequestBody ReservaVO reservaVo) {
 		Reserva reserva = new Reserva();
@@ -50,6 +60,15 @@ public class ReservaResource {
 		ResponseEntity<Reserva> rEntity = new ResponseEntity<>(reservaSaved,
 				HttpStatus.CREATED);
 		return rEntity;
+	}
+	
+	@PutMapping("/{idReserva}")
+	public ResponseEntity<Reserva> updateReserva(
+			@PathVariable("idReserva") String idReserva,
+			ReservaVO ReservaVo) {
+		//Reserva reserva = 
+		//return ResponseEntity<>(this.clienteService)
+		return null;
 	}
 	
 	/**
@@ -84,7 +103,7 @@ public class ReservaResource {
 	 * @return
 	 */
 	public Reserva mappingClienteToReserva(Reserva reserva, ReservaVO reservaVo) {
-		Cliente cliente = clienteService.findById(reservaVo.getIdRes());
+		Cliente cliente = this.clienteService.findById(reservaVo.getIdRes());
 		reserva.setCliente(cliente);
 		
 		return reserva;
@@ -97,7 +116,7 @@ public class ReservaResource {
 	 * @param reservaVo
 	 */
 	public void mappingReservaToCliente(Reserva reserva, ReservaVO reservaVo) {
-		Cliente cliente = clienteService.findById(reservaVo.getIdCliente());
+		Cliente cliente = this.clienteService.findById(reservaVo.getIdCliente());
 		// conseguimos las reservas del cliente, agregamos la nueva y guardamos
 		// la nueva lista de reservas
 		Set<Reserva> reservas = cliente.getReservas();

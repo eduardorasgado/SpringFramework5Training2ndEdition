@@ -4,6 +4,7 @@
 package com.eduardocode.lightreserve.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -25,7 +26,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
 	 * @param idCli
 	 * @return
 	 */
-	public Cliente findByIdCli(String idCli);
+	public Optional<Cliente> findByIdCli(String idCli);
 
 	/**
 	 * Definicion de metodo para buscar los clientes por su apellido 1) metodo
