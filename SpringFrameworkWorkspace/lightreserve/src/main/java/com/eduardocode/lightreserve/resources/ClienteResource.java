@@ -5,6 +5,7 @@ package com.eduardocode.lightreserve.resources;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,9 @@ import io.swagger.annotations.ApiResponses;
 /**
  * Resources package -> capa de vista de la aplicacion
  * 
- * Clase que representa el servicio web de cliente
+ * Clase que representa el servicio web de cliente.
+ * Interactua con el frontend que consuma la api, y responde con un contexto
+ * determinado sobre el cliente
  * @author cheetos
  *
  */
@@ -42,6 +45,8 @@ import io.swagger.annotations.ApiResponses;
  * */
 @Api(tags="cliente") 
 public class ClienteResource {
+	
+	@Autowired
 	private final ClienteService clienteService;
 	
 	// constructor

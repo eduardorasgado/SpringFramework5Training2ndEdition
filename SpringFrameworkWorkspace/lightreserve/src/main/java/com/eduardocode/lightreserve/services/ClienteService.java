@@ -2,6 +2,7 @@ package com.eduardocode.lightreserve.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,8 @@ import com.eduardocode.lightreserve.repository.ClienteRepository;
  */
 @Transactional(readOnly = true)
 public class ClienteService {
+	
+	@Autowired
 	private final ClienteRepository clienteRepository;
 
 	public ClienteService(ClienteRepository clienteRepository) {
@@ -69,6 +72,16 @@ public class ClienteService {
 	@Transactional
 	public void delete(Cliente cliente) {
 		this.clienteRepository.delete(cliente);
+	}
+	
+	/**
+	 * Metodo para realizar la operacion de buscar y devolver
+	 * un cliente dado un id determinado
+	 * @param idCli
+	 * @return
+	 */
+	public Cliente findById(String idCli) {
+		return this.clienteRepository.findByIdCli(idCli);
 	}
 
 	/**
