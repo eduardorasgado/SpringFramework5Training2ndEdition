@@ -11,4 +11,6 @@ public class ReservaVO {
 	private Date fechaSalidaRes;
 	private int cantidadPersonasRes;
 	private String descripcionRes;
+	// cliente va a recibir el id del cliente
+	private String idCliente;
 }

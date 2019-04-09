@@ -7,9 +7,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.eduardocode.lightreserve.model.Cliente;
 import com.eduardocode.lightreserve.model.Reserva;
 
 public interface ReservaRepository extends JpaRepository<Reserva, String> {
+	/**
+	 * Devuelve una lista de reservas dada un cliente
+	 * @param cliente
+	 * @return
+	 */
+	public List<Reserva> findByCliente(Cliente cliente);
 	
 	/**
 	 * 3) Metodo basado en consultas de tipo jpql multi campos
