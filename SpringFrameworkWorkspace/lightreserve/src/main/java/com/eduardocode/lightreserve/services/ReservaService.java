@@ -1,6 +1,7 @@
 package com.eduardocode.lightreserve.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,21 @@ public class ReservaService {
 	 */
 	public void delete(Reserva reserva) {
 		this.reservaRepository.delete(reserva);
+	}
+	
+	/**
+	 * Metodo que devuelve una Reserva en base a un id, en caso de que no 
+	 * exista la reserva, devuelve nulo
+	 * @param idRes
+	 * @return
+	 */
+	public Reserva findById(String idRes) {
+		Optional<Reserva> reserva = this.reservaRepository.findById(idRes);
+		if(reserva.isPresent()) {
+			return reserva.get();
+		} else {
+			return null;
+		}
 	}
 	
 	/**

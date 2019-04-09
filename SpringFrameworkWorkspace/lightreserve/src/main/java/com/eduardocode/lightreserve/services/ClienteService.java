@@ -1,6 +1,7 @@
 package com.eduardocode.lightreserve.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,12 +77,19 @@ public class ClienteService {
 	
 	/**
 	 * Metodo para realizar la operacion de buscar y devolver
-	 * un cliente dado un id determinado
+	 * un cliente dado un id determinado, si el cliente no existe, se devuelve
+	 * nulo
+	 * 
 	 * @param idCli
 	 * @return
 	 */
 	public Cliente findById(String idCli) {
-		return this.clienteRepository.findByIdCli(idCli);
+		Optional<Cliente> cliente = this.clienteRepository.findById(idCli);
+		if(cliente.isPresent()) {
+			return cliente.get();
+		} else {
+			return null;
+		}
 	}
 
 	/**
