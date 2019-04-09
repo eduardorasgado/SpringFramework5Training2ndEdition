@@ -102,11 +102,12 @@ public class ReservaResource {
 		Reserva reserva = this.reservaService.findById(idReserva);
 		
 		// solamente un cliente puede eliminar sus propias reservas
-		if(idCliente.equals(reserva.getCliente().getIdCli())) {
+		// y si esta reserva existe
+		if(reserva != null && idCliente.equals(reserva.getCliente().getIdCli())) {
 			this.reservaService.delete(reserva);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		// TODO: Comprobar si al eliminar una reserva se elimina de su cliente: SI
 	}
