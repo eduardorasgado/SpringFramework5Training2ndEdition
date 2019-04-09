@@ -9,6 +9,6 @@ Java  and spring framework 5 applications: REST APIs
 - Springfox Swagger
 - Swagger UI
 
-## How Rest API documentation look like:
+## How Rest API documentation looks like using Swagger:
 
 ![Screenshot](.gitutils/java-api.png?raw=true "Documentacion con swagger")
