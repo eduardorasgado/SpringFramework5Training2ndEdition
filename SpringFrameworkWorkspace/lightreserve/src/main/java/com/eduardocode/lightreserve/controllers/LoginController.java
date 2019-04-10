@@ -41,4 +41,15 @@ public class LoginController {
 		return mav;
 	}
 	
+	/**
+	 * Metodo para acceder a la interfaz de administracion de la documentacion
+	 * de la presente API
+	 * @return
+	 */
+	@GetMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home");
+		return mav;
+	}
 }
