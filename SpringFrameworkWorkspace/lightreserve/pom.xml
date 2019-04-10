@@ -30,6 +30,14 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- paquete de seguridad con spring security -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+				
+		
 		<!-- lambok es una utilidad que permite la creacion automatica de getters y setters -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
