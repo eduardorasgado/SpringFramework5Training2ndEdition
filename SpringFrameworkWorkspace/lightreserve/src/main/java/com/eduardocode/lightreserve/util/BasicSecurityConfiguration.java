@@ -47,4 +47,20 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.httpBasic();
 		*/
 	}
+	
+	/**
+	 * Configuracioon del metodo de autentificacion principal para el login de
+	 * la api doc
+	 */
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// sistema de autentificacion en memoria
+		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		auth.inMemoryAuthentication()
+		.withUser("eduardo")
+		.password(encoder.encode("gabagabahey"))
+		.roles("USER");
+	}
+	
+	
 }
