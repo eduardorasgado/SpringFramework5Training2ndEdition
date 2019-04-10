@@ -21,6 +21,11 @@ import com.eduardocode.lightreserve.resources.vo.ReservaVO;
 import com.eduardocode.lightreserve.services.ClienteService;
 import com.eduardocode.lightreserve.services.ReservaService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Clase que interactua con las peticiones del frontend que consuma la presente
  * api respecto de la clase Reserva
@@ -29,6 +34,7 @@ import com.eduardocode.lightreserve.services.ReservaService;
  */
 @RestController
 @RequestMapping("/api/reserva")
+@Api(tags="reserva")
 public class ReservaResource {
 	@Autowired
 	private final ClienteService clienteService;
@@ -51,6 +57,14 @@ public class ReservaResource {
 	 * @return
 	 */
 	@PostMapping
+	//----------------DOCUMENTACION UI---------------------------
+	@ApiOperation(value="Crear reserva", notes="Servicio para crear una reserva, "
+			+ "esta debe pertenecer a un cliente")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Se ha creado un cliente correctamente"),
+			@ApiResponse(code=400, message="Solicitud de creacion invalida")
+	})
+	//-----------------------------------------------------------
 	public ResponseEntity<Reserva> createReserva(@RequestBody ReservaVO reservaVo) {
 		Reserva reserva = new Reserva();
 		reserva = this.mappingReserva(reserva, reservaVo);
@@ -74,6 +88,13 @@ public class ReservaResource {
 	 * @return
 	 */
 	@PutMapping("/{idReserva}")
+	//----------------DOCUMENTACION UI---------------------------
+	@ApiOperation(value="Actualizar reserva", notes="Se actualiza una reserva dada su id")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Reserva actualizada de forma correcta"),
+			@ApiResponse(code=404, message="Reserva no encontrada")
+	})
+	//-----------------------------------------------------------
 	public ResponseEntity<Reserva> updateReserva(
 			@PathVariable("idReserva") String idReserva,
 			ReservaVO reservaVo) {
@@ -97,6 +118,14 @@ public class ReservaResource {
 	 * @param idReserva
 	 */
 	@DeleteMapping("/{idCliente}/{idReserva}")
+	//----------------DOCUMENTACION UI---------------------------
+	@ApiOperation(value="Eliminar reserva", notes="Servicio para eliminar una reserva dado"
+			+ "el id del cliente y el id de la reserva")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="La reserva ha sido eliminada exitosamente"),
+			@ApiResponse(code=404, message="Reserva no encontrada")
+	})
+	//-----------------------------------------------------------
 	public ResponseEntity<Reserva> removeReserva(@PathVariable("idReserva") String idReserva,
 			@PathVariable("idCliente") String idCliente) {
 		Reserva reserva = this.reservaService.findById(idReserva);
@@ -118,11 +147,26 @@ public class ReservaResource {
 	 * @return
 	 */
 	@GetMapping("/{idCliente}")
+	//----------------DOCUMENTACION UI---------------------------
+	@ApiOperation(value="Encontrar todas las reservas por cliente", 
+		notes="Servicio para obtener todas las reservas que le pertenecen a un"
+				+ "determinado cliente")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="Reservas encontradas de forma exitosa"),
+			@ApiResponse(code=404, message="Cliente no existe, por tanto así mismo sus"
+					+ "reservas")
+	})
+	//-----------------------------------------------------------
+	
 	public ResponseEntity<List<Reserva>> findAllByCliente(
 			@PathVariable("idCliente") String idCliente) {
 		Cliente cliente = clienteService.findById(idCliente);
+		if (cliente != null) {
+			return ResponseEntity.ok(this.reservaService.findByCliente(cliente));
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		
-		return ResponseEntity.ok(this.reservaService.findByCliente(cliente));
 	}
 	
 	/**
