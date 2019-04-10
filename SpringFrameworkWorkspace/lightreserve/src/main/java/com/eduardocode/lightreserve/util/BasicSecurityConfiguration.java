@@ -62,5 +62,18 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.roles("USER");
 	}
 	
-	
+	/**
+	 * Metodo que define las rutas de la aplicacion que se deben de excluir del proceso
+	 * de login, en la cual estan todos los recursos estaticos
+	 */
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(
+					"/resources/**",
+					"/static/**",
+					"/css/**",
+					"/js/**",
+					"/images/**"
+				);
+	}
 }
