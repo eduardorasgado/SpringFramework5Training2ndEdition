@@ -30,23 +30,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- paquete de seguridad con spring security -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-				
-		
-		<!-- lambok es una utilidad que permite la creacion automatica de getters y setters -->
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <!-- provided significa que no va a empaquetarse sino va a ser usada previo al proceso de construccion -->
-		    <scope>provided</scope>
-		</dependency>
-		
 		<!-- dependencias para la capa de model: jpa y postgres -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<!-- dado que estamos trabajamos con spring boot, en este caso spring data jpa integra hibernate
@@ -60,6 +43,22 @@
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
+		</dependency>
+		
+		<!-- paquete de seguridad con spring security -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<!-- lambok es una utilidad que permite la creacion automatica de getters y setters -->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <!-- provided significa que no va a empaquetarse sino va a ser usada previo al proceso de construccion -->
+		    <scope>provided</scope>
 		</dependency>
 		
 		<!-- dependencia para la documentacion de web APIs con swagger -->
@@ -76,6 +75,14 @@
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger-ui</artifactId>
 		    <version>2.9.2</version>
+		</dependency>
+		
+		<!-- dependencia para la implementacion de una vista de login y administracion de la api.
+		Es un motor de plantillas adecuado y eficiente para con spring boot -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		
 	</dependencies>
