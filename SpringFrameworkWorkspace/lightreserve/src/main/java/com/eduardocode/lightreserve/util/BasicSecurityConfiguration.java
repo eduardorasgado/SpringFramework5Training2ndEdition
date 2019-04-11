@@ -1,13 +1,16 @@
 package com.eduardocode.lightreserve.util;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Clase para configurar la configuracion mas basica disponible con Spring security
@@ -20,6 +23,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity 
 public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	@Value("${spring.queries.users-query}")
+	private String usersQuery;
+	@Value("${spring.queries.roles-query}")
+	private String rolesQuery;
+	
+	public BasicSecurityConfiguration() {
+		//
+	}
 	/**
 	 * Metodo para una configuracion de logueo basica con la incorporacion de
 	 * Spring Security
@@ -37,15 +54,7 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.failureUrl("/app/login?error=true")
 			// en caso de ser autorizado para entrar, carga la ruta
 			.defaultSuccessUrl("/app/home", true); // true para alwaysUse
-		/*
-		// trabajando con la configuracion del archivo application.properties
-		http.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.and()
-		.httpBasic();
-		*/
+		
 	}
 	
 	/**
@@ -54,12 +63,11 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// sistema de autentificacion en memoria
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		auth.inMemoryAuthentication()
-		.withUser("eduardo")
-		.password(encoder.encode("gabagabahey"))
-		.roles("USER");
+		auth.jdbcAuthentication()
+		.dataSource(dataSource)
+		.usersByUsernameQuery(usersQuery)
+		.authoritiesByUsernameQuery(rolesQuery)
+		.passwordEncoder(encoder);
 	}
 	
 	/**
