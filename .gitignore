@@ -1,6 +1,7 @@
 ServletsWorkspace/Servers/*
 SpringFrameworkWorkspace/Servers/*
 SpringFrameworkWorkspace/lightreserve/src/main/resources/application.yaml
+SpringFrameworkWorkspace/lightreserve/src/resources/application-prod.yaml
 SpringFrameworkWorkspace/lightreserve/src/main/resources/application.properties
 .metadata
 # Compiled class file
@@ -57,3 +58,4 @@ target/
 .project
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
+SpringFrameworkWorkspace/lightreserve/src/resources/application-prod.yaml
