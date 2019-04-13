@@ -88,10 +88,60 @@
 	</dependencies>
 
 	<build>
+		<finalName>light-reserve</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- configurando el plugin para poder generar una imagen con docker a partir del pom  -->
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.29.0</version>
+				<!-- configurando las imagenes que se generaran de los contenedores -->
+				<configuration>
+					<images>
+						<image>
+							<!-- cuenta de docker hub/nombre de la imagen -->
+							<name>eduardorasgadoruiz/${project.build.finalName}</name>
+							<!-- construccion -->
+							<build>
+								<from>openjdk:latest</from>
+								<!-- comandos a ejecutarse una vez este subida la imagen -->
+								<!-- sera ejecutado por java con un perfil de spring para produccion en una carpeta especifica empaquetado en un jar -->
+								<entryPoint>java -Dspring.profiles.active=prod -jar /Users/cheetos/application/${project.build.finalName}.jar</entryPoint>
+								<assembly>
+									<basedir>/Users/cheetos/application/</basedir>
+									<descriptorRef>artifact</descriptorRef>
+									<!-- peculiaridades del ensamblaje -->
+									<inline>
+										<id>assembly</id>
+										<!-- donde se encuentra el archivo a partir del cual se va a generar la imagen -->
+										<files>
+											<file>
+												<source>target/${project.build.finalName}.jar</source>
+											</file>
+										</files>
+									</inline>
+								</assembly>
+								
+								<tags>
+									<!-- versionamiento de las imagenes -->
+									<tag>latest</tag>
+								</tags>
+								<ports>
+									<port>8080</port>
+								</ports>
+							</build>
+							<!-- una vez que se construya se prosigue con la ejecucion -->
+							<run>
+								<namingStrategy>alias</namingStrategy>
+							</run>
+							<alias>${project.build.finalName}</alias>
+						</image>
+					</images>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
