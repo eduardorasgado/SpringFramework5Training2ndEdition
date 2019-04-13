@@ -1,2 +1,4 @@
 spring.security.user.name=yourUser
 spring.security.user.password=yourPassword
+spring.queries.users-query=select username,password, enabled from users WHERE username=?
+spring.queries.roles-query=SELECT ? as username, 'USER' as ROLE
