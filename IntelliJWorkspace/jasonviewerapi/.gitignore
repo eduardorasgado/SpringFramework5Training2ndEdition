@@ -69,7 +69,3 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 
-IntelliJWorkspace/jasonviewerapi/src/main/resources/application.yaml
-IntelliJWorkspace/jasonviewerapi/src/main/resources/application-prod.yaml
-IntelliJWorkspace/jasonviewerapi/src/main/resources/application.properties
-SpringFrameworkWorkspace/lightreserve/src/main/resources/application-prod.yaml
