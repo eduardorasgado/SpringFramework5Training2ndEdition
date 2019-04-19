@@ -28,6 +28,6 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
      * @param stopDate fecha de termino de visualizacion
      * @return lista de peliculas
      */
-    @Query("Select m from Movie m where r.startWatching =:startDate and r.stopWatching =: stopDate")
+    @Query("Select m from Movie m where m.startWatching =:startDate and m.stopWatching =:stopDate")
     public List<Movie> find(@Param("startDate") Date startDate, @Param("stopDate") Date stopDate);
 }
