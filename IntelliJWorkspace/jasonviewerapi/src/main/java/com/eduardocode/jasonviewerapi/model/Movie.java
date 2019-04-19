@@ -3,10 +3,7 @@ package com.eduardocode.jasonviewerapi.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -28,6 +25,9 @@ public class Movie extends Watchable{
     private String director;
     private int duration;
     private int timeViewed;
+
+    @Temporal(TemporalType.DATE)
     private Date startWatching;
+    @Temporal(TemporalType.DATE)
     private Date stopWatching;
 }

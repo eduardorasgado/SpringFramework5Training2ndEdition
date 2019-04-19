@@ -28,7 +28,9 @@ public class Chapter extends Watchable {
     @GenericGenerator(name="system-uuid", strategy = "uuid2")
     private String id;
     private int duration;
+    @Temporal(TemporalType.DATE)
     private Date startWatching;
+    @Temporal(TemporalType.DATE)
     private Date stopWatching;
 
     @ManyToOne

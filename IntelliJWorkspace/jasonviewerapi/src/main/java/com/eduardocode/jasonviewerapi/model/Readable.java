@@ -3,6 +3,8 @@ package com.eduardocode.jasonviewerapi.model;
 import lombok.Data;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,6 +20,7 @@ import java.util.Date;
 @MappedSuperclass
 public class Readable {
     private String title;
+    @Temporal(TemporalType.DATE)
     private Date editionDate;
     private String genre;
     private String editorial;

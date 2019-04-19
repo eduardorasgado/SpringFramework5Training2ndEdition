@@ -3,10 +3,7 @@ package com.eduardocode.jasonviewerapi.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * <h1>Cliente</h1>
@@ -19,6 +16,8 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name ="cliente")
+@NamedQuery(name="Cliente.findByIdentificacion",
+        query="Select c from Cliente c where c.identificacion = ?1")
 public class Cliente {
     @Id
     // generadores de hibernate
