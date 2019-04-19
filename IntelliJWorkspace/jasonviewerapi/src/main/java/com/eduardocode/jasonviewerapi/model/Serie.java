@@ -1,10 +1,9 @@
 package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +20,12 @@ import java.util.ArrayList;
 @Table(name="serie")
 public class Serie extends Watchable {
     @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
     private int seasonNumber;
     private String director;
+    // el mismo nombre del objeto instanciado en la clase Chapter
+    @OneToMany(mappedBy = "serie")
     private ArrayList<Chapter> chapters;
 }

@@ -1,8 +1,10 @@
 package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
@@ -20,6 +22,8 @@ import java.util.Date;
 @Table(name="movie")
 public class Movie extends Watchable{
     @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
     private String director;
     private int duration;

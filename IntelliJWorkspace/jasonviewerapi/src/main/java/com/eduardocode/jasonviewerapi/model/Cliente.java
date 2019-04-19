@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 /**
  * <h1>Cliente</h1>
- * Clase que representa la tabla de cliente
+ * Clase que representa la tabla de cliente dentro de la aplicacion
  *
  * @author Eduardo Rasgado Ruiz
  * @version 1.0
@@ -21,13 +21,16 @@ import javax.persistence.Table;
 @Table(name ="cliente")
 public class Cliente {
     @Id
+    // generadores de hibernate
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
     private String nombre;
     private String apellido;
     private String identificacion;
-    private String direccio;
+    private String direccion;
     private String telefono;
     private String email;
+    private String password;
+    private boolean activeAccount;
 }
