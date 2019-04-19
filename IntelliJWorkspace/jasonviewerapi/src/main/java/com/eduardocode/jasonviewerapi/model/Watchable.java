@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * <h1>Watchable</h1>
- * Clase padre abstracta
+ * Clase padre  para los recursos que son visualizables en formato de video
  * <p>
  * Clase abstracta que representa tres clases hijas: serie, cahpter y movie
  * @author Eduardo Rasgado Ruiz

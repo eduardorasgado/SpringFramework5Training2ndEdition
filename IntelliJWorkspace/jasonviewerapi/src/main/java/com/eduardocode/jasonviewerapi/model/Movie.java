@@ -1,5 +1,7 @@
 package com.eduardocode.jasonviewerapi.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Date;
  * @version 1.0
  * @since april/2019
  */
+@Data
 public class Movie extends Watchable{
     private String id;
     private String director;

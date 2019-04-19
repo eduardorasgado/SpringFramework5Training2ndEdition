@@ -1,5 +1,7 @@
 package com.eduardocode.jasonviewerapi.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +13,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since april/2019
  */
+@Data
 public class Serie extends Watchable {
     private String id;
     private int seasonNumber;
