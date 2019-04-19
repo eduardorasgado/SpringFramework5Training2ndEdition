@@ -3,8 +3,9 @@ package com.eduardocode.jasonviewerapi.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>Serie</h1>
@@ -27,5 +28,6 @@ public class Serie extends Watchable {
     private String director;
     // el mismo nombre del objeto instanciado en la clase Chapter
     @OneToMany(mappedBy = "serie")
-    private ArrayList<Chapter> chapters;
+    // el contenedor debe de ser una coleccion de java, como un set o un list o queue
+    private List<Chapter> chapters;
 }
