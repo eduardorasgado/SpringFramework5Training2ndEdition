@@ -1,7 +1,12 @@
 ServletsWorkspace/Servers/*
 SpringFrameworkWorkspace/Servers/*
+
+IntelliJWorkspace/jasonviewerapi/src/main/resources/application.yaml
+IntelliJWorkspace/jasonviewerapi/src/main/resources/application-prod.yaml
+IntelliJWorkspace/jasonviewerapi/src/main/resources/application.properties
+
+SpringFrameworkWorkspace/lightreserve/src/main/resources/application-prod.yaml
 SpringFrameworkWorkspace/lightreserve/src/main/resources/application.yaml
-SpringFrameworkWorkspace/lightreserve/src/resources/application-prod.yaml
 SpringFrameworkWorkspace/lightreserve/src/main/resources/application.properties
 .metadata
 # Compiled class file
@@ -57,5 +62,3 @@ target/
 .classpath
 .project
 spring-*/src/main/java/META-INF/MANIFEST.MF
-
-SpringFrameworkWorkspace/lightreserve/src/resources/application-prod.yaml
