@@ -1,7 +1,12 @@
 package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -17,8 +22,17 @@ import java.util.Date;
  * @since april/2019
  */
 @Data
+@Entity
+@Table(name="chapter")
 public class Chapter extends Watchable {
+    @Id
+    // generadores de hibernate
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid2")
+    private String id;
     private int duration;
     private Date startWatching;
     private Date stopWatching;
+
+    private Serie serie;
 }

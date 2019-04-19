@@ -2,6 +2,7 @@ package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
 
+import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  * @since april/2019
  */
 @Data
+@MappedSuperclass
 public class Readable {
     private String title;
     private Date editionDate;

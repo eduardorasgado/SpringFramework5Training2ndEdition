@@ -2,6 +2,9 @@ package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +17,10 @@ import java.util.ArrayList;
  * @since april/2019
  */
 @Data
+@Entity
+@Table(name="serie")
 public class Serie extends Watchable {
+    @Id
     private String id;
     private int seasonNumber;
     private String director;

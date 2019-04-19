@@ -2,6 +2,7 @@ package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
 
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 /**
@@ -15,6 +16,7 @@ import java.util.Date;
  *
  */
 @Data
+@MappedSuperclass
 public class Watchable {
     private String title;
     private String genre;

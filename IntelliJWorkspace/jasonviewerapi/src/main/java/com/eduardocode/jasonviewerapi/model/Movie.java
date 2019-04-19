@@ -2,6 +2,9 @@ package com.eduardocode.jasonviewerapi.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -13,7 +16,10 @@ import java.util.Date;
  * @since april/2019
  */
 @Data
+@Entity
+@Table(name="movie")
 public class Movie extends Watchable{
+    @Id
     private String id;
     private String director;
     private int duration;
