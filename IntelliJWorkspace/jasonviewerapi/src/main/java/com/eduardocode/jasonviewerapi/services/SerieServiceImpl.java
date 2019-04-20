@@ -2,8 +2,12 @@ package com.eduardocode.jasonviewerapi.services;
 
 
 import com.eduardocode.jasonviewerapi.model.Serie;
+import com.eduardocode.jasonviewerapi.repository.SerieRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <h1>SerieServiceImpl</h1>
@@ -16,7 +20,15 @@ import java.util.List;
  * @version 1.0
  * @since april/2019
  */
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class SerieServiceImpl implements ISerieService {
+
+    private SerieRepository serieRepository;
+
+    public SerieServiceImpl(SerieRepository serieRepository) {
+        this.serieRepository = serieRepository;
+    }
     /**
      * Metodo para crear series
      *
@@ -26,7 +38,7 @@ public class SerieServiceImpl implements ISerieService {
      */
     @Override
     public Serie create(Serie serie) {
-        return null;
+        return this.serieRepository.save(serie);
     }
 
     /**
@@ -37,7 +49,7 @@ public class SerieServiceImpl implements ISerieService {
      */
     @Override
     public Serie update(Serie serie) {
-        return null;
+        return this.serieRepository.save(serie);
     }
 
     /**
@@ -48,6 +60,10 @@ public class SerieServiceImpl implements ISerieService {
      */
     @Override
     public boolean delete(Serie serie) {
+        if(this.serieRepository.findById(serie.getId()).isPresent()) {
+            this.serieRepository.delete(serie);
+            return true;
+        }
         return false;
     }
 
@@ -58,7 +74,7 @@ public class SerieServiceImpl implements ISerieService {
      */
     @Override
     public List<Serie> getAll() {
-        return null;
+        return this.serieRepository.findAll();
     }
 
     /**
@@ -69,6 +85,10 @@ public class SerieServiceImpl implements ISerieService {
      */
     @Override
     public Serie findById(String id) {
+        Optional<Serie> serieContainer = this.serieRepository.findById(id);
+        if(serieContainer.isPresent()) {
+            return serieContainer.get();
+        }
         return null;
     }
 }
