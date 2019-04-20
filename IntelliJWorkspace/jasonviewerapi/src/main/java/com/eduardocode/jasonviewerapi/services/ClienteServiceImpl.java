@@ -24,7 +24,7 @@ public class ClienteServiceImpl implements IClienteService {
 
     private ClienteRepository clienteRepository;
 
-    public ClienteServiceImpl(ClienteRepository clienteRepository){
+    public ClienteServiceImpl(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
@@ -34,7 +34,6 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Instancia de cliente proveniente del frontend
      * @return Cliente Nuevo cliente creado
      */
-    @Transactional
     @Override
     public Cliente create(Cliente cliente) {
         return this.clienteRepository.save(cliente);
@@ -47,7 +46,6 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Instancia de cliente con los nuevos datos
      * @return Cliente cliente actualizado y guardado en la base de datos
      */
-    @Transactional
     @Override
     public Cliente update(Cliente cliente) {
         return this.clienteRepository.save(cliente);
@@ -59,11 +57,10 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Cliente que va a ser borrado
      * @return un booleano dependiendo si se borra o no el cliente
      */
-    @Transactional
     @Override
     public boolean delete(Cliente cliente) {
         Optional<Cliente> clienteToDelete = clienteRepository.findById(cliente.getId());
-        if(clienteToDelete.isPresent()){
+        if(clienteToDelete.isPresent()) {
             clienteRepository.delete(cliente);
             return true;
         }
@@ -76,20 +73,18 @@ public class ClienteServiceImpl implements IClienteService {
      * @param apellido string con el apellido del cliente a buscar
      * @return El cliente deseado
      */
-    @Transactional
     @Override
-    public Cliente findByApellido(String apellido) {
-        return null;
+    public List<Cliente> findByApellido(String apellido) {
+       return this.clienteRepository.findByApellido(apellido);
     }
 
     /**
      * Metodo que devuelve todos los clientes existentes dentro de la aplicacion
      * @return List<Cliente> lista de todos los clientes
      */
-    @Transactional
     @Override
     public List<Cliente> getAll() {
-        return null;
+        return this.clienteRepository.findAll();
     }
 
     /**
@@ -98,9 +93,12 @@ public class ClienteServiceImpl implements IClienteService {
      * @param id El id del cliente a buscar
      * @return Cliente Un cliente encontrado
      */
-    @Transactional
     @Override
     public Cliente findById(String id) {
+        Optional<Cliente> clienteContainer = this.clienteRepository.findById(id);
+        if(clienteContainer.isPresent()){
+            return clienteContainer.get();
+        }
         return null;
     }
 }

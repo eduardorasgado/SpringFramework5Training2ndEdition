@@ -44,7 +44,7 @@ public interface IClienteService {
      * @param apellido string con el apellido del cliente a buscar
      * @return El cliente deseado
      */
-    public Cliente findByApellido(String apellido);
+    public List<Cliente> findByApellido(String apellido);
 
     /**
      * Metodo que devuelve todos los clientes existentes dentro de la aplicacion

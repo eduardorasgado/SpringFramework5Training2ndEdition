@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <h1>ClienteRepository</h1>
@@ -36,6 +37,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
      * @return Cliente la entidad de un cliente
      * @since april/2019
      */
-    public Cliente findByIdentificacion(String identificacion);
+    public Optional<Cliente> findByIdentificacion(String identificacion);
 
 }
