@@ -28,7 +28,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
      * @param apellido apellido del usuario
      *  since april/2019
      */
-    public List<Cliente> findByApellido(String apellido);
+    List<Cliente> findByApellido(String apellido);
 
     /**
      * Busca un cliente dada una identificacion
@@ -37,6 +37,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
      * @return Cliente la entidad de un cliente
      * @since april/2019
      */
-    public Optional<Cliente> findByIdentificacion(String identificacion);
+    Optional<Cliente> findByIdentificacion(String identificacion);
 
 }

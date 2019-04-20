@@ -21,7 +21,7 @@ public interface IMovieService {
      * @param movie Contiene los datos de la pelicula a crear
      * @return Pelicula que se acaba de crear
      */
-    public Movie create(Movie movie);
+    Movie create(Movie movie);
 
     /**
      * Metodo para actualizar una pelicula existente
@@ -29,7 +29,7 @@ public interface IMovieService {
      * @param movie Contiene los datos de la pelicula que se va a actualizar
      * @return La pelicula actualizada
      */
-    public Movie update(Movie movie);
+    Movie update(Movie movie);
 
     /**
      * Metodo para eliminar una pelicula
@@ -37,21 +37,21 @@ public interface IMovieService {
      * @param movie La pelicula a ser borrada
      * @return true o false en caso de que la pelicula haya sido borrada
      */
-    public boolean delete(Movie movie);
+    boolean delete(Movie movie);
 
     /**
      * Metodo para obtener una lista con todas las peliculas disponibles en la aplicacion
      *
      * @return Una lista de peliculas {@code List<Movie>}
      */
-    public List<Movie> getAll();
+    List<Movie> getAll();
 
     /**
      * Metodo para encontrar una pelicula con un id especifico
      * @param id un string con el id de la pelicula deseada
      * @return una entidad de pelicula
      */
-    public Movie findById(String id);
+    Movie findById(String id);
 
     /**
      * Encuentra una pelicula con una hora de vista y de finalizacion de vista especificos
@@ -60,5 +60,5 @@ public interface IMovieService {
      * @param stopDate fecha final
      * @return una lista de peliculas
      */
-    public List<Movie> findAllWithDate(Date startDate, Date stopDate);
+    List<Movie> findAllWithDate(Date startDate, Date stopDate);
 }

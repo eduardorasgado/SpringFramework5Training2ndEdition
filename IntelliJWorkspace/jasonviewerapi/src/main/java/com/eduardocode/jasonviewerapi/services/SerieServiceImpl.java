@@ -56,7 +56,7 @@ public class SerieServiceImpl implements ISerieService {
      * Metodo para eliminar una serie
      *
      * @param serie La instancia de la serie a ser eliminada
-     * @return un bookeano que identifica si fue o no eliminada la serie
+     * @return un booleano que identifica si fue o no eliminada la serie
      */
     @Override
     public boolean delete(Serie serie) {
