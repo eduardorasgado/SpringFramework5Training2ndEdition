@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewerapi.services;
 import com.eduardocode.jasonviewerapi.model.Cliente;
 import com.eduardocode.jasonviewerapi.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
  * @since april/2019
  */
 @Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class ClienteServiceImpl implements IClienteService {
 
     private ClienteRepository clienteRepository;
@@ -32,6 +34,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Instancia de cliente proveniente del frontend
      * @return Cliente Nuevo cliente creado
      */
+    @Transactional
     @Override
     public Cliente create(Cliente cliente) {
         return this.clienteRepository.save(cliente);
@@ -44,6 +47,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Instancia de cliente con los nuevos datos
      * @return Cliente cliente actualizado y guardado en la base de datos
      */
+    @Transactional
     @Override
     public Cliente update(Cliente cliente) {
         return this.clienteRepository.save(cliente);
@@ -55,6 +59,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @param cliente Cliente que va a ser borrado
      * @return un booleano dependiendo si se borra o no el cliente
      */
+    @Transactional
     @Override
     public boolean delete(Cliente cliente) {
         Optional<Cliente> clienteToDelete = clienteRepository.findById(cliente.getId());
@@ -71,6 +76,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @param apellido string con el apellido del cliente a buscar
      * @return El cliente deseado
      */
+    @Transactional
     @Override
     public Cliente findByApellido(String apellido) {
         return null;
@@ -80,6 +86,7 @@ public class ClienteServiceImpl implements IClienteService {
      * Metodo que devuelve todos los clientes existentes dentro de la aplicacion
      * @return List<Cliente> lista de todos los clientes
      */
+    @Transactional
     @Override
     public List<Cliente> getAll() {
         return null;
@@ -91,6 +98,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @param id El id del cliente a buscar
      * @return Cliente Un cliente encontrado
      */
+    @Transactional
     @Override
     public Cliente findById(String id) {
         return null;
