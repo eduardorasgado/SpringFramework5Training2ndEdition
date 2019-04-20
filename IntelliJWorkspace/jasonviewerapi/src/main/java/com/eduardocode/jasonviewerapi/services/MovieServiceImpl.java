@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <h1>MovieServiceImpl</h1>
@@ -37,7 +38,7 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public Movie create(Movie movie) {
-        return null;
+        return this.movieRepository.save(movie);
     }
 
     /**
@@ -48,7 +49,7 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public Movie update(Movie movie) {
-        return null;
+        return this.movieRepository.save(movie);
     }
 
     /**
@@ -59,6 +60,10 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public boolean delete(Movie movie) {
+        if(this.movieRepository.findById(movie.getId()).isPresent()){
+            this.movieRepository.delete(movie);
+            return true;
+        }
         return false;
     }
 
@@ -69,7 +74,7 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public List<Movie> getAll() {
-        return null;
+        return this.movieRepository.findAll();
     }
 
     /**
@@ -80,6 +85,10 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public Movie findById(String id) {
+        Optional<Movie> movieContainer = this.movieRepository.findById(id);
+        if(movieContainer.isPresent()){
+            return movieContainer.get();
+        }
         return null;
     }
 
@@ -92,6 +101,6 @@ public class MovieServiceImpl implements IMovieService {
      */
     @Override
     public List<Movie> findAllWithDate(Date startDate, Date stopDate) {
-        return null;
+        return this.movieRepository.find(startDate, stopDate);
     }
 }
