@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewerapi.services;
 import com.eduardocode.jasonviewerapi.model.Movie;
 import com.eduardocode.jasonviewerapi.repository.MovieRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -22,10 +23,10 @@ import java.util.Optional;
  * @since april/2019
  */
 @Service
-@Transactional(readOnly = true, rollbackFor = Exception.class)
+@Transactional(readOnly = false, rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class MovieServiceImpl implements IMovieService {
 
-    private MovieRepository movieRepository;
+    private final MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -73,6 +74,7 @@ public class MovieServiceImpl implements IMovieService {
      * @return Una lista de peliculas {@code List<Movie>}
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Movie> getAll() {
         return this.movieRepository.findAll();
     }
@@ -84,6 +86,7 @@ public class MovieServiceImpl implements IMovieService {
      * @return una entidad de pelicula
      */
     @Override
+    @Transactional(readOnly = true)
     public Movie findById(String id) {
         Optional<Movie> movieContainer = this.movieRepository.findById(id);
         if(movieContainer.isPresent()){
@@ -100,6 +103,7 @@ public class MovieServiceImpl implements IMovieService {
      * @return una lista de peliculas
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Movie> findAllWithDate(Date startDate, Date stopDate) {
         return this.movieRepository.find(startDate, stopDate);
     }

@@ -4,6 +4,7 @@ package com.eduardocode.jasonviewerapi.services;
 import com.eduardocode.jasonviewerapi.model.Serie;
 import com.eduardocode.jasonviewerapi.repository.SerieRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,10 +22,10 @@ import java.util.Optional;
  * @since april/2019
  */
 @Service
-@Transactional(readOnly = true, rollbackFor = Exception.class)
+@Transactional(readOnly = false, rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class SerieServiceImpl implements ISerieService {
 
-    private SerieRepository serieRepository;
+    private final SerieRepository serieRepository;
 
     public SerieServiceImpl(SerieRepository serieRepository) {
         this.serieRepository = serieRepository;
@@ -73,6 +74,7 @@ public class SerieServiceImpl implements ISerieService {
      * @return Una lista con todas las series existentes en la aplicacion
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Serie> getAll() {
         return this.serieRepository.findAll();
     }
@@ -84,6 +86,7 @@ public class SerieServiceImpl implements ISerieService {
      * @return la serie que se buscaba
      */
     @Override
+    @Transactional(readOnly = true)
     public Serie findById(String id) {
         Optional<Serie> serieContainer = this.serieRepository.findById(id);
         if(serieContainer.isPresent()) {

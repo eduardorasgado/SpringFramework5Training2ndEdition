@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewerapi.services;
 import com.eduardocode.jasonviewerapi.model.Cliente;
 import com.eduardocode.jasonviewerapi.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.Optional;
  * @since april/2019
  */
 @Service
-@Transactional(readOnly = true, rollbackFor = Exception.class)
+@Transactional(readOnly = false, rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class ClienteServiceImpl implements IClienteService {
 
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
 
     public ClienteServiceImpl(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
@@ -74,6 +75,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @return El cliente deseado
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Cliente> findByApellido(String apellido) {
        return this.clienteRepository.findByApellido(apellido);
     }
@@ -83,6 +85,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @return List<Cliente> lista de todos los clientes
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Cliente> getAll() {
         return this.clienteRepository.findAll();
     }
@@ -94,6 +97,7 @@ public class ClienteServiceImpl implements IClienteService {
      * @return Cliente Un cliente encontrado
      */
     @Override
+    @Transactional(readOnly = true)
     public Cliente findById(String id) {
         Optional<Cliente> clienteContainer = this.clienteRepository.findById(id);
         if(clienteContainer.isPresent()){

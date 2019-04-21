@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewerapi.services;
 import com.eduardocode.jasonviewerapi.model.Chapter;
 import com.eduardocode.jasonviewerapi.repository.ChapterRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.Optional;
  * @since april/2019
  */
 @Service
-@Transactional(readOnly = true, rollbackFor = Exception.class)
+@Transactional(readOnly = false, rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class ChapterServiceImpl implements IChapterService {
 
-    private ChapterRepository chapterRepository;
+    private final ChapterRepository chapterRepository;
 
     public ChapterServiceImpl(ChapterRepository chapterRepository){
         this.chapterRepository = chapterRepository;
@@ -69,6 +70,7 @@ public class ChapterServiceImpl implements IChapterService {
      * @return Devuelve una lista de capitulos {@code List<Chapter>}
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Chapter> getAll() {
         return this.chapterRepository.findAll();
     }
@@ -80,6 +82,7 @@ public class ChapterServiceImpl implements IChapterService {
      * @return Un capitulo de una serie
      */
     @Override
+    @Transactional(readOnly = true)
     public Chapter findById(String id) {
         Optional<Chapter> chapterContainer = this.chapterRepository.findById(id);
         if(chapterContainer.isPresent()) {
