@@ -32,6 +32,7 @@ public class ClienteServiceImpl implements IClienteService {
     /**
      * Metodo que crea un cliente a partir de una intancia proporcionada por el usuario
      *
+     * @author Eduardo Rasgado Ruiz
      * @param cliente Instancia de cliente proveniente del frontend
      * @return Cliente Nuevo cliente creado
      */
@@ -44,6 +45,7 @@ public class ClienteServiceImpl implements IClienteService {
      * Metodo que actualiza un cliente existente a partir de un cliente proporcionado por
      * el user
      *
+     * @author Eduardo Rasgado Ruiz
      * @param cliente Instancia de cliente con los nuevos datos
      * @return Cliente cliente actualizado y guardado en la base de datos
      */
@@ -55,6 +57,7 @@ public class ClienteServiceImpl implements IClienteService {
     /**
      * Metodo que elimina el cliente proporcionado
      *
+     * @author Eduardo Rasgado Ruiz
      * @param cliente Cliente que va a ser borrado
      * @return un booleano dependiendo si se borra o no el cliente
      */
@@ -71,6 +74,7 @@ public class ClienteServiceImpl implements IClienteService {
     /**
      * Metodo que devuelve un cliente buscado a partir de su apellido
      *
+     * @author Eduardo Rasgado Ruiz
      * @param apellido string con el apellido del cliente a buscar
      * @return El cliente deseado
      */
@@ -93,6 +97,7 @@ public class ClienteServiceImpl implements IClienteService {
     /**
      * Metodo que devuelve un cliente dado el id de este
      *
+     * @author Eduardo Rasgado Ruiz
      * @param id El id del cliente a buscar
      * @return Cliente Un cliente encontrado
      */

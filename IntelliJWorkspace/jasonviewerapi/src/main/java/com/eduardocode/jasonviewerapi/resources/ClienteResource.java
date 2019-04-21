@@ -34,7 +34,9 @@ public class ClienteResource {
 
     /**
      * Metodo que regresa todos los clientes en una lista
-     * @return
+     *
+     * @author Eduardo Rasgado Ruiz
+     * @return Un cliente nuevo con una respuesta http
      */
     //---------------DOCUMENTACION UI--------------------
     @ApiOperation(value = "Listar clientes", notes= "Servicio para listar todos los clientes")
@@ -57,7 +59,9 @@ public class ClienteResource {
     /**
      * Metodo para la creacion de un nuevo cliente por medio de recibir la entidad
      * de ese cliente
-     * @return Un cliente recien creado
+     *
+     * @author Eduardo Rasgado Ruiz
+     * @return Un cliente recien creado y una respuesta http
      */
     //---------------DOCUMENTACION UI--------------------
     @ApiOperation(value="Crear un nuevo cliente", notes = "Servicio para crear un cliente nuevo")
@@ -83,8 +87,50 @@ public class ClienteResource {
                 HttpStatus.CREATED);
     }
 
+    /**
+     * Servicio o metodo para actualizar un cliente existent
+     *
+     * @author Eduardo Rasgado Ruiz
+     * @param idCliente string de identificacion del cliente a actualizar
+     * @param clienteVo cliente que fue resultado del binding del cuerpo del request
+     * @return un cliente con un  estatus http
+     */
+    //---------------DOCUMENTACION UI--------------------
+    @ApiOperation(value = "Actualizar un cliente", notes = "Actualizacion de un cliente que " +
+            "realmente existe en los registros")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 201,
+                    message = "Se ha actualizado un empleado con exito"
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "No se encuentra el cliente en los registros"
+            )
+    })
+    //---------------------------------------------------
+    @PostMapping("/{id}")
+    public ResponseEntity<Cliente> update(@PathVariable("id") String  idCliente,
+                                          @RequestBody ClienteVO clienteVo) {
+        Cliente cliente = this.clienteService.findById(idCliente);
+        if(cliente == null) {
+            // en caso de que no exista el cliente a actualizar
+            return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+        } else {
+            cliente = this.mappingClienteUtil(cliente, clienteVo);
+        }
 
+        return new ResponseEntity<>(this.clienteService.update(cliente),
+                HttpStatus.OK);
+    }
 
+    /**
+     * Utilidad para mapear un cliente a partir de un cliente virtual
+     *
+     * @param cliente El cliente vacio
+     * @param clienteVo Un cliente virtual
+     * @return El cliente con los datos del frontend
+     */
     private Cliente mappingClienteUtil(Cliente cliente, ClienteVO clienteVo){
         cliente.setNombre(clienteVo.getNombre());
         cliente.setApellido(clienteVo.getApellido());
