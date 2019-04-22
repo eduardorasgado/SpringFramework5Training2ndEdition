@@ -1,3 +1,14 @@
+admin:
+  contact: youremail@yourcompany.com
+  name: Eduardo Rasgado
+  doc:
+    title: Jason Viewer API Documentation
+    description: Documentation of bussines jasonviewer api. Updated 2019.
+    version: 1.0.0
+    license: License MIT
+    licenseUrl: #
+    termsService: none
+
 spring:
   datasource:
     url: jdbc:postgresql://postgres_docker_server:5432/postgres
