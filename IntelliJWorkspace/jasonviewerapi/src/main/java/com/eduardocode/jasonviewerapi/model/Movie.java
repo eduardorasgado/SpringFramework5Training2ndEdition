@@ -26,8 +26,8 @@ public class Movie extends Watchable{
     private int duration;
     private int timeViewed;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startWatching;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date stopWatching;
 }

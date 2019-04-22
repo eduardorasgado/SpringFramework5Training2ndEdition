@@ -92,10 +92,11 @@ public class MovieResource {
 
     private Movie movieMappingUtil(Movie movie, MovieVO movieVo) {
 
-        if(!movieVo.getTitle().equals("")){
+        String voidString = "";
+        if(!movieVo.getTitle().equals(voidString)){
             movie.setTitle(movieVo.getTitle());
         }
-        if(!movieVo.getGenre().equals("")) {
+        if(!movieVo.getGenre().equals(voidString)) {
             movie.setGenre(movieVo.getGenre());
         }
         if(movieVo.getProductionYear().shortValue() != 0){
@@ -104,7 +105,7 @@ public class MovieResource {
 
         movie.setView(movieVo.isView());
 
-        if(!movieVo.getDirector().equals("")){
+        if(!movieVo.getDirector().equals(voidString)){
             movie.setDirector(movieVo.getDirector());
         }
         if(movieVo.getDuration() != 0){
