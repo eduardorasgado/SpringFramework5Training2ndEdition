@@ -13,7 +13,7 @@ import java.util.Date;
  * @since april/2019
  */
 @Data
-public class MovieVO {
+public class MovieVO extends WatchableVO {
     private String director;
     private Integer duration;
     private Integer timeViewed;
