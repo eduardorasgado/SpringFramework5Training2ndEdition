@@ -129,6 +129,21 @@ public class MovieResource {
      * @param idMovie String con el identificador de la pelicula a eliminar
      * @return la pelicula que se ha eliminado o un estado http de no enccontrado
      */
+    //------------------DOCUMENTACION UI--------------------------------
+    @ApiOperation(value = "Servicio para eliminar una pelicula", notes = "Eliminar una pelicula" +
+            "requiere su id, y por otro lado es requisito que la pelicula a eliminar exista" +
+            "en los registros")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Se ha eliminado la pelicula exitosamente"
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "No se ha encontrado la pelicula"
+            )
+    })
+    //------------------------------------------------------------------
     @DeleteMapping("/{id}")
     public ResponseEntity<Movie> delete(@PathVariable("id") String idMovie) {
         Movie movie = this.movieService.findById(idMovie);
