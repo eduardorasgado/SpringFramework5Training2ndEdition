@@ -90,6 +90,17 @@ public class MovieResource {
                 HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Movie> update(@PathVariable("id") String idMovie,
+                                        @RequestBody MovieVO movieVo){
+        Movie movie = this.movieService.findById(idMovie);
+        if(movie != null) {
+            movie = this.movieMappingUtil(movie, movieVo);
+            return new ResponseEntity<>(this.movieService.update(movie), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     private Movie movieMappingUtil(Movie movie, MovieVO movieVo) {
 
         String voidString = "";
