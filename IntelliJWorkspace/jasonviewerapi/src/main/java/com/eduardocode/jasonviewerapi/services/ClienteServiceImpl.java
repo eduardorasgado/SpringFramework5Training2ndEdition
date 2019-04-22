@@ -65,7 +65,7 @@ public class ClienteServiceImpl implements IClienteService {
     public boolean delete(Cliente cliente) {
         Optional<Cliente> clienteToDelete = clienteRepository.findById(cliente.getId());
         if(clienteToDelete.isPresent()) {
-            clienteRepository.delete(cliente);
+            this.clienteRepository.delete(cliente);
             return true;
         }
         return false;

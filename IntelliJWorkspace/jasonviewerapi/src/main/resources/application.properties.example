@@ -1,0 +1,4 @@
+# configuracion para poder ver el log de las transacciones de la database
+logging.level.ROOT=INFO
+logging.level.org.springframework.orm.jpa=DEBUG
+logging.level.org.springframework.transaction=DEBUG
