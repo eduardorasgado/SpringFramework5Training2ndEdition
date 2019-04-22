@@ -88,7 +88,7 @@ public class ClienteResource {
     }
 
     /**
-     * Servicio o metodo para actualizar un cliente existent
+     * Servicio o metodo para actualizar un cliente existente
      *
      * @author Eduardo Rasgado Ruiz
      * @param idCliente string de identificacion del cliente a actualizar
@@ -109,19 +109,37 @@ public class ClienteResource {
             )
     })
     //---------------------------------------------------
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Cliente> update(@PathVariable("id") String  idCliente,
                                           @RequestBody ClienteVO clienteVo) {
         Cliente cliente = this.clienteService.findById(idCliente);
         if(cliente == null) {
             // en caso de que no exista el cliente a actualizar
-            return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             cliente = this.mappingClienteUtil(cliente, clienteVo);
         }
 
         return new ResponseEntity<>(this.clienteService.update(cliente),
                 HttpStatus.OK);
+    }
+
+    /**
+     * Servicio para eliminar un cliente que existe en los registros
+     *
+     * @author Eduardo Rasgado Ruiz
+     * @param idCliente String con el id perteneciente al cliente a eliminar
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> delete(@PathVariable("id") String idCliente) {
+        Cliente cliente = this.clienteService.findById(idCliente);
+        if(cliente != null) {
+            if(this.clienteService.delete(cliente)){
+                return new ResponseEntity<>(cliente, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
