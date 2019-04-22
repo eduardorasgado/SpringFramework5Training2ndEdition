@@ -1,0 +1,43 @@
+
+------------------------------------------------CLIENTE
+
+{
+  "activeAccount": true,
+  "apellido": "rasgado",
+  "direccion": "enrique c goviano",
+  "email": "eduardo.rasgado@gmail.com",
+  "identificacion": "eduardo1234",
+  "nombre": "Eduardo",
+  "password": "gabagabahey",
+  "telefono": "9711390012"
+}
+
+{
+  "activeAccount": true,
+  "apellido": "Lopez Martinez",
+  "direccion": "Calle Lopez Chente",
+  "email": "marisol.lopezm@gmail.com",
+  "identificacion": "marisolana",
+  "nombre": "Marisol",
+  "password": "mari123",
+  "telefono": "4421234455"
+}
+
+update:
+{
+  "activeAccount": true,
+  "apellido": "Lopez Martinez",
+  "direccion": "Calle Lopez Chente manzana #22, colonia agraria",
+  "email": "marisol.lopezm@gmail.com",
+  "identificacion": "marisolana",
+  "nombre": "Marisol",
+  "password": "mari123",
+  "telefono": "4421234455"
+}
+
+INSERT INTO cliente (id, active_account, apellido, direccion, email, identificacion, nombre, password, telefono) values ('18e9b04f-a05d-4f33-adf2-c6bef60c04f0',true, 'Lopez Ramirez', 'enrique c gobiano', 'marisol.lopez@gmail.com', 'marisol1234l', 'Marisol','marisol123', '4423456677') 
+
+18e9b04f-a05d-4f33-adf2-c6bef60c04f0
+
+-----------------------------------------------MOVIES
+
