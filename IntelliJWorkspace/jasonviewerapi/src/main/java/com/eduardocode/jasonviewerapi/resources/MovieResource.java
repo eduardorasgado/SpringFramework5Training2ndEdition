@@ -123,6 +123,23 @@ public class MovieResource {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Metodo para eliminar una pelicula existente en los registros
+     *
+     * @param idMovie String con el identificador de la pelicula a eliminar
+     * @return la pelicula que se ha eliminado o un estado http de no enccontrado
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Movie> delete(@PathVariable("id") String idMovie) {
+        Movie movie = this.movieService.findById(idMovie);
+        if(movie != null){
+            if(this.movieService.delete(movie)){
+                return new ResponseEntity<>(movie, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     private Movie movieMappingUtil(Movie movie, MovieVO movieVo) {
 
         String voidString = "";
