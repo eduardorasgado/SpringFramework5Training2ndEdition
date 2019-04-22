@@ -131,6 +131,18 @@ public class ClienteResource {
      * @param idCliente String con el id perteneciente al cliente a eliminar
      * @return
      */
+    @ApiOperation(value = "Servicio para eliminar un cliente", notes = "Eliminacion de un cliente " +
+            "existente en los registros dado su id.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Se ha eliminado el cliente exitosamente"
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "No se ha encontrado el cliente"
+            )
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> delete(@PathVariable("id") String idCliente) {
         Cliente cliente = this.clienteService.findById(idCliente);
