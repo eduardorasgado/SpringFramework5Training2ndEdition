@@ -90,6 +90,28 @@ public class MovieResource {
                 HttpStatus.CREATED);
     }
 
+    /**
+     * Metodo para actualizar una pelicula que existe en los registros
+     *
+     * @param idMovie String de identificacion de la pelicula a actualizar
+     * @param movieVo datos nuevos de la pelicula a ser actualizada
+     * @return la pelicula ya actualizada
+     */
+    //------------------DOCUMENTACION UI--------------------------------
+    @ApiOperation(value = "Servicio para actualizacion de una pelicula", notes = "Una pelicula debe" +
+            "de estar registrada en la db para ser actualizada, se requiere de igual manera el id" +
+            "de la pelicula y un json con todos los campos de la entidad pelicula")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 201,
+                    message = "Se ha actualizado una pelicula con exito"
+            ),
+            @ApiResponse(
+                    code = 404,
+                    message = "No se encuentra la pelicula en los registros"
+            )
+    })
+    //------------------------------------------------------------------
     @PutMapping("/{id}")
     public ResponseEntity<Movie> update(@PathVariable("id") String idMovie,
                                         @RequestBody MovieVO movieVo){
