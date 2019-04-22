@@ -41,3 +41,15 @@ INSERT INTO cliente (id, active_account, apellido, direccion, email, identificac
 
 -----------------------------------------------MOVIES
 
+{
+  "director": "Michael Bay",
+  "duration": 120,
+  "genre": "accion",
+  "productionYear": 2007,
+  "startWatching": "2019-04-22T03:37:12.011Z",
+  "stopWatching": "2019-04-22T05:30:12.011Z",
+  "timeViewed": 150,
+  "title": "Transformers",
+  "view": true
+}
+

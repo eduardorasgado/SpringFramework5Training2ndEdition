@@ -67,6 +67,19 @@ public class MovieResource {
      * @param movieVo Objeto virtual con datos de la nueva pelicula
      * @return la nueva pelicula con un estatus http
      */
+    @ApiOperation(value = "Servicio de Creacion de una nueva pelicula", notes = "Se crea una" +
+            " pelicula en base a un objeto virtual enviado desde el frontend. Devuelve un objeto de" +
+            "pelicula en caso de tener exito")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 201,
+                    message = "Se ha creado una pelicula con exito"
+            ),
+            @ApiResponse(
+                    code = 400,
+                    message = "Solicitud invalida"
+            )
+    })
     @PostMapping
     public ResponseEntity<Movie> create(@RequestBody  MovieVO movieVo) {
         Movie movie = new Movie();
@@ -94,12 +107,9 @@ public class MovieResource {
         if(!movieVo.getDirector().equals("")){
             movie.setDirector(movieVo.getDirector());
         }
-
         if(movieVo.getDuration() != 0){
             movie.setDuration(movieVo.getDuration());
         }
-        System.out.println("[Llego hasta aqui]");
-
         if(movieVo.getTimeViewed() != null){
             movie.setTimeViewed(movieVo.getTimeViewed());
         }
