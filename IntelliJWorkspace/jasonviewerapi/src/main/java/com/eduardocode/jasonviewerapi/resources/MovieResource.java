@@ -1,6 +1,7 @@
 package com.eduardocode.jasonviewerapi.resources;
 
 import com.eduardocode.jasonviewerapi.model.Movie;
+import com.eduardocode.jasonviewerapi.resources.vo.MovieVO;
 import com.eduardocode.jasonviewerapi.services.IMovieService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,9 +9,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -59,5 +58,58 @@ public class MovieResource {
     @GetMapping
     public ResponseEntity<List<Movie>> getAll(){
         return ResponseEntity.ok(this.movieService.getAll());
+    }
+
+    /**
+     * Metodo para la creacion de una nueva pelicula a partir de los datos desde el cliente
+     *
+     * @author Eduardo Rasgado Ruiz
+     * @param movieVo Objeto virtual con datos de la nueva pelicula
+     * @return la nueva pelicula con un estatus http
+     */
+    @PostMapping
+    public ResponseEntity<Movie> create(@RequestBody  MovieVO movieVo) {
+        Movie movie = new Movie();
+
+        movie = this.movieMappingUtil(movie, movieVo);
+
+        return new ResponseEntity<Movie>(this.movieService.create(movie),
+                HttpStatus.CREATED);
+    }
+
+    private Movie movieMappingUtil(Movie movie, MovieVO movieVo) {
+
+        if(!movieVo.getTitle().equals("")){
+            movie.setTitle(movieVo.getTitle());
+        }
+        if(!movieVo.getGenre().equals("")) {
+            movie.setGenre(movieVo.getGenre());
+        }
+        if(movieVo.getProductionYear().shortValue() != 0){
+            movie.setProductionYear(movieVo.getProductionYear().shortValue());
+        }
+
+        movie.setView(movieVo.isView());
+
+        if(!movieVo.getDirector().equals("")){
+            movie.setDirector(movieVo.getDirector());
+        }
+
+        if(movieVo.getDuration() != 0){
+            movie.setDuration(movieVo.getDuration());
+        }
+        System.out.println("[Llego hasta aqui]");
+
+        if(movieVo.getTimeViewed() != null){
+            movie.setTimeViewed(movieVo.getTimeViewed());
+        }
+        if(movieVo.getStartWatching() != null) {
+            movie.setStartWatching(movieVo.getStartWatching());
+        }
+        if(movieVo.getStopWatching() != null) {
+            movie.setStopWatching(movieVo.getStopWatching());
+        }
+
+        return movie;
     }
 }
