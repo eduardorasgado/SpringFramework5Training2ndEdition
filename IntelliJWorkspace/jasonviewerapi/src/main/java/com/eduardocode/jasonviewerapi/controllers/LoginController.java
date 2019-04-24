@@ -1,7 +1,5 @@
 package com.eduardocode.jasonviewerapi.controllers;
 
-import org.springframework.security.web.server.WebFilterExchange;
-import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

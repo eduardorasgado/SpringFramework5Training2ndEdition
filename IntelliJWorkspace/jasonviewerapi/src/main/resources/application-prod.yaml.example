@@ -1,0 +1,29 @@
+#production runs in maven with command: clean install docker:build
+admin:
+  contact: eduardo.rasgado@hotmail.com
+  name: Eduardo Rasgado
+  doc:
+    title: Jason Viewer API Documentation
+    description: Documentation of bussines jasonviewer api. Updated 2019.
+    version: 1.0.0
+    license: License MIT
+    licenseUrl: #
+    termsService: none
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres_server:5432/postgres
+    username: postgres
+    password: OJHyrydOudnedP3
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  queries:
+    users-query: SELECT username, password, status FROM usuario WHERE username=?
+    roles-query: SELECT username, role FROM role WHERE username =?
