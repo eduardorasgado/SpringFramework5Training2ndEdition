@@ -53,3 +53,17 @@ INSERT INTO cliente (id, active_account, apellido, direccion, email, identificac
   "view": true
 }
 
+no date movie
+
+{
+  "director": "Michael Bay",
+  "duration": 210,
+  "genre": "accion",
+  "productionYear": 0,
+  "startWatching": null,
+  "stopWatching": null,
+  "timeViewed": 0,
+  "title": "Transformers 2",
+  "view": false
+}
+
