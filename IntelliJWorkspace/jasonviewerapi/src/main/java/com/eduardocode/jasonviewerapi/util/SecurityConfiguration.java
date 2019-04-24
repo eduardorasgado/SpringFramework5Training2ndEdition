@@ -31,7 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Value("${spring.queries.users-query}")
     private String usernameQuery;
+    @Value("${spring.queries.roles-query}")
     private String authoritiesQuery;
 
     private String loginUrl;
