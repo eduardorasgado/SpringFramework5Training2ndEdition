@@ -67,3 +67,9 @@ no date movie
   "view": false
 }
 
+----------------------------USUARIO y ROLE
+
+INSERT INTO usuario (id, apellido, nombre, username, password, status) values ('askn45l2-d3jbwqjbq-qqw3j','Rasgado', 'Eduardo','lalirex777', '$2a$10$4Hz55NSFtp0qW.Am6Q/51uGjosoz5d1pWwgtPIwh0.Xi09AXyWWJu', true);
+
+INSERT INTO role (id, perfil, username) VALUES ('sdladskfns-1212nk12-plpklmokjb', 'ADMIN', 'lalirex777');
+
