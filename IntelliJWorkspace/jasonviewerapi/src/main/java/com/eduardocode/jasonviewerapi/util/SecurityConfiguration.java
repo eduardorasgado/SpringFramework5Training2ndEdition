@@ -63,7 +63,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // en caso de fallar la autorizacion
                 .failureUrl(failureLoginUrl)
                 // una vez logueado, a donde ir, true es para alwaysUse
-                .defaultSuccessUrl(homePage, true);
+                .defaultSuccessUrl(homePage, true)
+                .and()
+                // salir de la session, solo basta con poner un link a '/logout'
+                .logout();
     }
 
     /**

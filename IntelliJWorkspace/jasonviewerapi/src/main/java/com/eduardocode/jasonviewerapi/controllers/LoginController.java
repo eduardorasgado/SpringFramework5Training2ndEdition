@@ -1,5 +1,7 @@
 package com.eduardocode.jasonviewerapi.controllers;
 
+import org.springframework.security.web.server.WebFilterExchange;
+import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,7 @@ public class LoginController {
 
 
     /**
-     * Metodo para la ruta del login
+     * Metodo para la ruta del login en caso de accesar a /login o /
      * @return retorna una vista a login
      */
     @GetMapping({"/login", "/"})
@@ -36,7 +38,7 @@ public class LoginController {
 
 
     /**
-     * Metodo para la redireccion
+     * Metodo para la redireccion a la ruta de home
      * @return Una vista a home
      */
     @GetMapping("/home")
