@@ -19,6 +19,7 @@ import java.util.TimeZone;
  * @version 1.0
  * @since 2019
  */
+// excluir el archivo de seguridad por default para usar el de spring security
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class JasonViewerApiApplication {
 
