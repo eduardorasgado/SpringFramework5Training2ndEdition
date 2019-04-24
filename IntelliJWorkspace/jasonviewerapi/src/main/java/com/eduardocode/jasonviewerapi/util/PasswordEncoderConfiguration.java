@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
+ * <h1>PasswordEncoderConfiguration</h1>
  * Bean de configuracion del encoder de passwords: encriptar passwords.
  *
  * @author Eduardo Rasgado Ruiz

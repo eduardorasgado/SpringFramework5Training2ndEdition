@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.sql.DataSource;
 
 /**
+ * <h1>SecurityConfiguration</h1>
  * Clase de configuracion para el manejo de seguridad en la aplicacion
+ * Hereda de {@code WebSecurityConfigurerAdapter}.
  *
  * @author Eduardo Rasgado Ruiz
  * @version 1.0
@@ -74,5 +77,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(usernameQuery)
                 .authoritiesByUsernameQuery(authoritiesQuery)
                 .passwordEncoder(encoder);
+    }
+
+    /**
+     * Metodo que defie las rutas de la applicacion que deben de ser ignoradas por la logica del
+     * login
+     * @param web instancia de configuracion web
+     * @throws Exception
+     */
+    @Override
+    public void configure(WebSecurity web) throws  Exception {
+        web.ignoring().antMatchers(
+                "/resources/**",
+                "/static/**",
+                "/css/**",
+                "/js/**",
+                "/images/**"
+        );
     }
 }
