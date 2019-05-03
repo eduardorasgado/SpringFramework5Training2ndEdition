@@ -5,6 +5,9 @@ crear un contenedor en base a una imagen:
 docker pull postgres:9.6.6-alpine
 docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=platzi postgres:9.6.6-alpine
 
+crear container basado en una imagen creada por spring y docker plugin, con un
+servidor de database determinado:
+
 docker run -d --name lightreserve --add-host=postgres_server:192.168.99.100 -p 8080:8080 eduardorasgadoruiz/light-reserve:latest
 
 ver los logs de un contenedor:
