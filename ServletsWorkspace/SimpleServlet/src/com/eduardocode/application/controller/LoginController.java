@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eduardocode.application.bean.Login;
+
 /**
  * Servlet implementation class LoginController
  */
@@ -27,7 +29,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -37,8 +39,17 @@ public class LoginController extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		
-		System.out.println("name: "+ name);
-		System.out.println("password: "+ password);
+		Login login = new Login();
+		login.setName(name);
+		login.setPassword(password);
+		
+		boolean authenticated = login.authentication();
+		
+		if(authenticated == true) {
+			response.sendRedirect("welcome.jsp");
+		} else {
+			response.sendRedirect("error.jsp");
+		}
 	}
 
 }
