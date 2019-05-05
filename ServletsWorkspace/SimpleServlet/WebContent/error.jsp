@@ -7,7 +7,7 @@
 <title>Error</title>
 </head>
 <body>
-	<h1>Datos incorrectors</h1>
+	<h1>Datos incorrectos</h1>
 	<p>Tus credenciales no coinciden con los registros</p>
 </body>
 </html>

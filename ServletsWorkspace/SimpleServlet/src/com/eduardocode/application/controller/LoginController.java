@@ -1,6 +1,8 @@
 package com.eduardocode.application.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,11 +47,16 @@ public class LoginController extends HttpServlet {
 		
 		boolean authenticated = login.authentication();
 		
-		if(authenticated == true) {
-			response.sendRedirect("welcome.jsp");
+		RequestDispatcher dispatcher = null;
+		if(authenticated) {
+			//response.sendRedirect("welcome.jsp");
+			dispatcher = request.getRequestDispatcher("welcome.jsp");
 		} else {
-			response.sendRedirect("error.jsp");
+			//response.sendRedirect("error.jsp");
+			dispatcher = request.getRequestDispatcher("error.jsp");
 		}
+		
+		dispatcher.forward(request, response);
 	}
 
 }
