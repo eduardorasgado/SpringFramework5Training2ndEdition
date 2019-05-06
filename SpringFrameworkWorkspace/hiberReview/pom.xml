@@ -37,6 +37,13 @@
 	    <version>5.4.2.Final</version>
 	</dependency>
     
+    <dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.18.6</version>
+	    <!-- provided significa que no va a empaquetarse sino va a ser usada previo al proceso de construccion -->
+	    <scope>provided</scope>
+	</dependency>
     
   </dependencies>
 </project>
