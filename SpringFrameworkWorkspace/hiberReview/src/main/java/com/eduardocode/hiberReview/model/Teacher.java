@@ -4,12 +4,14 @@
 package com.eduardocode.hiberReview.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -30,6 +32,10 @@ public class Teacher implements Serializable {
 	private Long idTeacher;
 	private String name;
 	private String avatar;
+	
+	// el nombre del campo que contiene la entidad Teacher en el modelo Course
+	@OneToMany(mappedBy="teacher") 
+	private Set<Course> courses;
 	
 	public Teacher(String name, String avatar) {
 		super();
