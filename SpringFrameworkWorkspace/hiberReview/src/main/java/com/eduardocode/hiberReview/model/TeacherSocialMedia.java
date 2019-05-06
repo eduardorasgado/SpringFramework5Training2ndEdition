@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,14 +37,14 @@ public class TeacherSocialMedia implements Serializable {
 	/**
 	 * Un teacher puede tener muchas redes sociales
 	 */
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_teacher")
 	private Teacher teacher;
 	
 	/**
 	 * Muchas redes sociales pueden pertenecer a un teacher
 	 */
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_social_media")
 	private SocialMedia socialMedia;
 	
