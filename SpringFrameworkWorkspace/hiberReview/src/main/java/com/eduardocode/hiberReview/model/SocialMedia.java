@@ -4,7 +4,7 @@
 package com.eduardocode.hiberReview.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +38,7 @@ public class SocialMedia implements Serializable{
 	// eager indica que jalara las relaciones cada vez que se haga una consulta 
 	// de esta tabla
 	@OneToMany(mappedBy="socialMedia", fetch=FetchType.EAGER)
-	private List<TeacherSocialMedia> teacherSocialMedias;
+	private Set<TeacherSocialMedia> teacherSocialMedias;
 	
 	public SocialMedia(String name, String icon) {
 		this.name = name;

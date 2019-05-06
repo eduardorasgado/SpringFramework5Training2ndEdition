@@ -4,7 +4,7 @@
 package com.eduardocode.hiberReview.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,10 +37,10 @@ public class Teacher implements Serializable {
 	// el nombre del campo que contiene la entidad Teacher en el modelo Course
 	// fetch define que cada que consultemos en teacher, se traiga todos los cursos
 	@OneToMany(mappedBy="teacher", fetch=FetchType.EAGER) 
-	private List<Course> courses;
+	private Set<Course> courses;
 	
 	@OneToMany(mappedBy="teacher", fetch=FetchType.EAGER)
-	private List<TeacherSocialMedia> teacherSocialMedias;
+	private Set<TeacherSocialMedia> teacherSocialMedias;
 	
 	public Teacher(String name, String avatar) {
 		super();
