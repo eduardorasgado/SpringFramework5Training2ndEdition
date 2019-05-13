@@ -27,11 +27,40 @@ public class SessionHandler {
         sessionFactory = configuration.buildSessionFactory();
         
         session = sessionFactory.openSession();
-        
+        // la session se prepara aqui, se cierra con el metodo closeSessionHandler
+        // en los DAO
+        this.beginSession();
 	}
 
+	/**
+	 * Metodo mediante el cual se obtiene la session de hibernate
+	 * @return
+	 */
 	public Session getSession() {
         return session;
+	}
+	
+	/**
+	 * Metodo que prepara la session para realizar transacciones
+	 */
+	public void beginSession() {
+		session.beginTransaction();
+	}
+	
+	/**
+	 * Metodo que debe llamarse una vez termine de efectuarse una consulta o
+	 * transaccion con hibernate a la db
+	 */
+	public void closeSession() {
+		session.close();
+	}
+	
+	/**
+	 * Metodo que ejecuta una transaccion deseada por la clase que requiere
+	 * dicha transaccion
+	 */
+	public void commitTransaction() {
+        session.getTransaction().commit();
 	}
 
 }

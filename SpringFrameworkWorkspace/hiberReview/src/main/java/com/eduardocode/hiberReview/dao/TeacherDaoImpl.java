@@ -14,21 +14,34 @@ import com.eduardocode.hiberReview.model.Teacher;
  * @author cheetos
  */
 public class TeacherDaoImpl implements TeacherDao {
+	
+	private SessionHandler sessionHandler;
+	
+	public TeacherDaoImpl() {
+		sessionHandler = new SessionHandler();
+	}
+	
+	/**
+	 * Metodo que cierra  la session terminadose de usar la implementacion de
+	 * teacher dao
+	 */
+	public void closeSessionHandler() {
+		sessionHandler.closeSession();
+	}
 
 	/* (non-Javadoc)
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#create(com.eduardocode.hiberReview.model.Teacher)
 	 */
 	public void create(Teacher teacher) {
-		// TODO Auto-generated method stub
-
+		sessionHandler.getSession().save(teacher);
+		sessionHandler.commitTransaction();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#update(com.eduardocode.hiberReview.model.Teacher)
 	 */
 	public void update(Teacher teacher) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -51,7 +64,12 @@ public class TeacherDaoImpl implements TeacherDao {
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#findById(java.lang.Long)
 	 */
 	public Teacher findById(Long idTeacher) {
-		// TODO Auto-generated method stub
+		Teacher teacher = sessionHandler.getSession()
+				.find(Teacher.class, idTeacher);
+		
+		if(teacher != null) {
+			return teacher;
+		}
 		return null;
 	}
 
