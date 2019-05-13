@@ -50,8 +50,12 @@ public class TeacherDaoImpl implements TeacherDao {
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#delete(java.lang.Long)
 	 */
 	public void delete(Long idTeacher) {
-		// TODO Auto-generated method stub
-
+		Teacher teacher = this.findById(idTeacher);
+		if(teacher != null) {
+			System.out.println("Teacher deleted");
+			sessionHandler.getSession().delete(teacher);
+			sessionHandler.commitTransaction();
+		}
 	}
 
 	/* (non-Javadoc)
