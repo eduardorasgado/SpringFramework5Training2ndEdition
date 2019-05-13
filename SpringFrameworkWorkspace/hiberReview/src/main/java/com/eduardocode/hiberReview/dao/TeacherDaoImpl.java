@@ -43,7 +43,8 @@ public class TeacherDaoImpl implements TeacherDao {
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#update(com.eduardocode.hiberReview.model.Teacher)
 	 */
 	public void update(Teacher teacher) {
-		
+		sessionHandler.getSession().update(teacher);
+		sessionHandler.commitTransaction();
 	}
 
 	/* (non-Javadoc)

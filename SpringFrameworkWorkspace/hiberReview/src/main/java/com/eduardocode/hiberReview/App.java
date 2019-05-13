@@ -42,12 +42,17 @@ public class App
         			{System.out.println(actualTeacher.getName());});
         System.out.println("");
         
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         
         // esperar 5 segundos para elimminar a micky
         Long idMick = teacherDaoImpl.findByName("Micky Gonzales").getIdTeacher();
         System.out.println("mickys id: "+idMick);
-        teacherDaoImpl.delete(idMick);
+        //teacherDaoImpl.delete(idMick);
+        
+        idTeacher = new Long(1);
+        Teacher tUpdate = teacherDaoImpl.findById(idTeacher);
+        tUpdate.setAvatar("avatar actualizado");
+        teacherDaoImpl.update(tUpdate);
         
         
         teacherDaoImpl.closeSessionHandler();
