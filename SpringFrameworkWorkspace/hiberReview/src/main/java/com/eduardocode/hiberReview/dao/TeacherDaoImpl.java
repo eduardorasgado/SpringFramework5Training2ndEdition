@@ -5,6 +5,8 @@ package com.eduardocode.hiberReview.dao;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
+
 import com.eduardocode.hiberReview.model.Teacher;
 
 /**
@@ -56,8 +58,11 @@ public class TeacherDaoImpl implements TeacherDao {
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#getAll()
 	 */
 	public List<Teacher> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		// Hibernate usa HQL:: hibernate Query language
+		List<Teacher> teachers = sessionHandler.getSession()
+				.createQuery("from Teacher").list();
+		
+		return teachers;
 	}
 
 	/* (non-Javadoc)
@@ -77,7 +82,14 @@ public class TeacherDaoImpl implements TeacherDao {
 	 * @see com.eduardocode.hiberReview.dao.TeacherDao#findByName(java.lang.String)
 	 */
 	public Teacher findByName(String name) {
-		// TODO Auto-generated method stub
+		Query<Teacher> result = sessionHandler.getSession()
+				.createQuery("select teacher from Teacher as teacher where teacher.name like '"
+						+name+"'");
+		
+		Teacher teacher = result.getSingleResult();
+		
+		//System.out.println("id is: "+teacherEntity);
+		if(teacher != null) return teacher;
 		return null;
 	}
 
