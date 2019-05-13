@@ -8,6 +8,10 @@ import java.util.List;
 import com.eduardocode.hiberReview.model.Teacher;
 
 /**
+ * <h1>TeacherDao</h1>
+ * Interface de transaccion con el patron de diseño DAO,
+ * con el modelo Teacher hacia la db.
+ * 
  * @author cheetos
  *
  */
