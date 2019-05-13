@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.eduardocode.hiberReview.model.Course;
 import com.eduardocode.hiberReview.model.Teacher;
 
 /**
@@ -17,22 +18,18 @@ public class App
     public static void main( String[] args )
     {
     	TimeZone.setDefault(TimeZone.getTimeZone("America/Mexico_City"));
-    	
-    	// Configuracion de una session para agregar elementos a la db
-        SessionFactory sessionFactory;
         
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        sessionFactory = configuration.buildSessionFactory();
+        //Teacher teacher = new Teacher("Tadeo", "Avatar de Tadeo");
         
-        Session session = sessionFactory.openSession();
+        Course course = new Course("Programación Avanzada", "clase 1, clase 2, clase 3",
+        		"Vision por computador");
         
-        Teacher teacher = new Teacher("Tadeo", "Avatar de Tadeo");
-        
+        /*
         // insersion del elemento
         session.beginTransaction();
-        session.save(teacher);
+        session.save(course);
         session.getTransaction().commit();
         session.close();
+        */
     }
 }

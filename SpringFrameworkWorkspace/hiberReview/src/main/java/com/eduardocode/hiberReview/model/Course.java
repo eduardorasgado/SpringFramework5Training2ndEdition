@@ -38,13 +38,11 @@ public class Course implements Serializable {
 	
 	
 	
-	public Course(String name, String syllabus, String project, 
-			Teacher teacher) {
+	public Course(String name, String syllabus, String project) {
 		super();
 		this.name = name;
 		this.syllabus = syllabus;
 		this.project = project;
-		this.teacher = teacher;
 	}
 
 	public Course() {
